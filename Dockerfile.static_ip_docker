@@ -1,0 +1,7 @@
+## FILE: Dockerfile.static_ip_docker
+FROM alpine:latest
+MAINTAINER Jonathan Lowsley <jlowsley@gmail.com>
+
+# add nmap
+RUN apk update && apk add nmap
+
