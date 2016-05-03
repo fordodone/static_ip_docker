@@ -1,0 +1,47 @@
+## FILE: docker-compose.yml 
+## COMPOSE VERSION: docker-compose version 1.7.0, build 0d7bf73
+
+version: "2"
+services:
+  apple:
+    hostname: apple
+    container_name: apple
+    image: alpine:latest
+    networks:
+      green:
+        ipv4_address: 172.20.0.11
+    entrypoint: /bin/sleep 30
+  
+  orange:
+    hostname: orange
+    container_name: orange
+    image: alpine:latest
+    networks:
+      green:
+        ipv4_address: 172.20.0.12
+    entrypoint: /bin/sleep 30
+
+  banana:
+    hostname: banana
+    container_name: banana
+    image: alpine:latest
+    networks:
+      green:
+        ipv4_address: 172.20.0.13
+    entrypoint: /bin/sleep 30
+
+  monkey:
+    hostname: monkey
+    container_name: monkey
+    build: .
+    networks:
+      green:
+        ipv4_address: 172.20.0.101
+    entrypoint: nmap -nsP 172.20.0.0/24
+
+networks:
+  green:
+    driver: bridge
+    ipam: 
+      config:
+      - subnet:   172.20.0.0/24
